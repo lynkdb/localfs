@@ -1,4 +1,4 @@
-// Copyright 2017 lynkdb Authors, All rights reserved.
+// Copyright 2017 Eryx <evorui аt gmаil dοt cοm>, All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package localfs // import "code.hooto.com/lynkdb/localfs"
+package localfs // import "github.com/lynkdb/localfs"
 
 import (
 	"errors"
@@ -21,8 +21,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"code.hooto.com/lynkdb/iomix/connect"
-	"code.hooto.com/lynkdb/iomix/fs"
+	"github.com/lynkdb/iomix/connect"
+	"github.com/lynkdb/iomix/fs"
 )
 
 type FsObject struct {
