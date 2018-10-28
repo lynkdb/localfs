@@ -117,7 +117,7 @@ func (conn *Connector) Open(path string) (fs.FsObject, error) {
 	}, nil
 }
 
-func (conn *Connector) OpenFile(path string, flag int, perm os.FileMode) (fs.FsObject, error) {
+func (conn *Connector) OpenFile(path string, flag int, perm os.FileMode, size int64) (fs.FsObject, error) {
 
 	path = filepath.Clean(path)
 
