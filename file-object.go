@@ -98,6 +98,14 @@ func (conn *FileObjectConnector) FoFilePut(src_path string, dst_path string) skv
 	}
 	defer fpsrc.Close()
 
+	sts, err := fpsrc.Stat()
+	if err != nil {
+		return newResult(skv.ResultError, err)
+	}
+	if sts.Size() < 1 {
+		return newResult(skv.ResultError, errors.New("zero size"))
+	}
+
 	fpdst, err := os.OpenFile(dst_path, os.O_RDWR|os.O_CREATE, 0644)
 	if err != nil {
 		return newResult(skv.ResultError, err)
@@ -106,7 +114,11 @@ func (conn *FileObjectConnector) FoFilePut(src_path string, dst_path string) skv
 	fpdst.Seek(0, 0)
 	fpdst.Truncate(0)
 
-	if _, err := io.Copy(fpsrc, fpdst); err != nil {
+	if _, err := io.Copy(fpdst, fpsrc); err != nil {
+		return newResult(skv.ResultError, err)
+	}
+
+	if err := fpdst.Sync(); err != nil {
 		return newResult(skv.ResultError, err)
 	}
 
