@@ -21,6 +21,6 @@ import (
 	"github.com/lynkdb/localfs"
 )
 
-func NewConnector(copts *connect.ConnOptions) (skv.FileObjectConnector, error) {
+func NewFileObjectConnector(copts *connect.ConnOptions) (skv.FileObjectConnector, error) {
 	return localfs.FileObjectConnect(*copts)
 }
